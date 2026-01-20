@@ -2,21 +2,25 @@ import streamlit as st
 import pickle
 from google.colab import drive
 import os
+import requests
+import io
 
-# Mount Google Drive
-drive.mount('/content/drive')
+# Load model from public URL
+model_url = "https://drive.google.com/file/d/1SMHmW9z4YBAxic80_jokMqIatRGaQqMf/view?usp=drive_link"
+response = requests.get(model_url)
+model = pickle.load(io.BytesIO(response.content))
 
-# Update paths to your model and vectorizer in Drive
-model_path = '/content/drive/MyDrive/Colab Notebooks/SMS_Spam/model.pkl'
-vectorizer_path = '/content/drive/MyDrive/Colab Notebooks/SMS_Spam/vectorizer.pkl'
+vectorizer_url = "https://drive.google.com/file/d/1YLRGNiBU_jCI1xT10T6ie0BbBXGn9k6B/view?usp=drive_link"
+response = requests.get(vectorizer_url)
+tfidf = pickle.load(io.BytesIO(response.content))
 
 import string, nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 ps = PorterStemmer()
 
-tfidf = pickle.load(open('vectorizer.pkl','rb'))
-model = pickle.load(open('model.pkl','rb'))
+#tfidf = pickle.load(open('vectorizer.pkl','rb'))
+#model = pickle.load(open('model.pkl','rb'))
 
 st.title("SMS Spam Classifier")
 input_sms = st.text_area("Enter the Message...")
@@ -59,6 +63,7 @@ if st.button('Predict..'):
         st.header('Spam')
     else:
         st.header('Not Spam')
+
 
 
 
