@@ -5,11 +5,11 @@ import requests
 import io
 
 # Load model from public URL
-model_url = "https://drive.google.com/file/d/1SMHmW9z4YBAxic80_jokMqIatRGaQqMf/view?usp=drive_link"
+model_url = "https://drive.google.com/file/d/1SMHmW9z4YBAxic80_jokMqIatRGaQqMf/view?usp=sharing"
 response = requests.get(model_url)
 model = pickle.load(io.BytesIO(response.content))
 
-vectorizer_url = "https://drive.google.com/file/d/1YLRGNiBU_jCI1xT10T6ie0BbBXGn9k6B/view?usp=drive_link"
+vectorizer_url = "https://drive.google.com/file/d/1YLRGNiBU_jCI1xT10T6ie0BbBXGn9k6B/view?usp=sharing"
 response = requests.get(vectorizer_url)
 tfidf = pickle.load(io.BytesIO(response.content))
 
@@ -62,6 +62,7 @@ if st.button('Predict..'):
         st.header('Spam')
     else:
         st.header('Not Spam')
+
 
 
 
