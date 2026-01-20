@@ -14,6 +14,8 @@ response = requests.get(vectorizer_url)
 tfidf = pickle.load(io.BytesIO(response.content))
 
 import string, nltk
+nltk.download('punkt')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 ps = PorterStemmer()
@@ -62,6 +64,7 @@ if st.button('Predict..'):
         st.header('Spam')
     else:
         st.header('Not Spam')
+
 
 
 
