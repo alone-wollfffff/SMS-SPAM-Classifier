@@ -1,5 +1,14 @@
 import streamlit as st
 import pickle
+from google.colab import drive
+import os
+
+# Mount Google Drive
+drive.mount('/content/drive')
+
+# Update paths to your model and vectorizer in Drive
+model_path = '/content/drive/MyDrive/Colab Notebooks/SMS_Spam/model.pkl'
+vectorizer_path = '/content/drive/MyDrive/Colab Notebooks/SMS_Spam/vectorizer.pkl'
 
 import string, nltk
 from nltk.corpus import stopwords
@@ -50,6 +59,7 @@ if st.button('Predict..'):
         st.header('Spam')
     else:
         st.header('Not Spam')
+
 
 
 
