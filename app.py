@@ -15,6 +15,7 @@ tfidf = pickle.load(io.BytesIO(response.content))
 
 import string, nltk
 nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
@@ -64,6 +65,7 @@ if st.button('Predict..'):
         st.header('Spam')
     else:
         st.header('Not Spam')
+
 
 
 
